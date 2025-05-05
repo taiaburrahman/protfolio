@@ -1,3 +1,30 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/items/(.*)",
+      "dest": "server.js",
+      "methods": ["GET", "POST", "PUT", "DELETE"]
+    },
+    {
+      "src": "/uploads/(.*)",
+      "dest": "server.js"
+      
+    },
+    {
+      "src": "/(.*)",
+      "status": 404,
+      "dest": "server.js"
+    }
+  ],
+  "env": {
+    "MONGODB_URI": "mongodb+srv://taiabur:2020@cluster1.13xxgnz.mongodb.net/protfolio",
+    "BASE_URL": "https://taiabur.vercel.app/"
+  }
 }
